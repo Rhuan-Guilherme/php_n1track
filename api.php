@@ -20,13 +20,19 @@ if ($conexao->connect_error) {
 $data = json_decode(file_get_contents("php://input"));
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $email = $data->email;
+    $nome = $conexao->real_escape_string($data->nome);
+    $email = $conexao->real_escape_string($data->email);
     $senha = $data->senha;
 
-    $sql = "INSERT INTO usuarios (email, senha) VALUES ('$email', '$senha')";
+    $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
+
+    $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome','$email', '$senhaCriptografada')";
 
     if ($conexao->query($sql) === TRUE) {
         echo "Cadastro realizado com sucesso!";
+        echo $nome;
+        echo $email;
+        echo $senha;
     } else {
         echo "Erro ao cadastrar: " . $conexao->error;
     }
