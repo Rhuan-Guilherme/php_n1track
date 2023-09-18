@@ -3,12 +3,7 @@ header("Access-Control-Allow-Origin: *"); // Permitir que qualquer origem acesse
 header("Access-Control-Allow-Methods: POST"); // Permitir apenas métodos POST
 header("Access-Control-Allow-Headers: Content-Type"); // Permitir apenas o cabeçalho Content-Type
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbName = "login";
-
-$conexao = new mysqli($servername, $username, $password, $dbName);
+require 'ConectBanco/bancoUsuarios.php';
 
 if ($conexao->connect_error) {
     die("Conexão falhou: " . $conexao->connect_error);
