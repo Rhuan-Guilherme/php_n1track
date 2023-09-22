@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     } else{
         $senhaCriptografada = password_hash($senha, PASSWORD_DEFAULT);
     
-        $sql = "INSERT INTO usuarios (nome, email, senha) VALUES ('$nome','$email', '$senhaCriptografada')";
+        $sql = "INSERT INTO usuarios (nome, email, senha, supervisor) VALUES ('$nome','$email', '$senhaCriptografada', 0)";
     
         if ($conexao->query($sql) === TRUE) {
             echo "Cadastro realizado com sucesso!";
