@@ -13,7 +13,7 @@ $user_id = isset($_GET['user_id']) ? $_GET['user_id'] : '';
 
 if (!empty($user_id)) {
     // Consulta SQL para buscar todos os resultados com user_id igual a 18
-    $sql = "SELECT * FROM tickets WHERE user_id = $user_id";
+    $sql = "SELECT * FROM tickets WHERE user_id = $user_id ORDER BY id DESC";
 
     $result = $conexao->query($sql);
 
